@@ -1,0 +1,8 @@
+D:\player\Iermu-Aitools\Iermu-Player\player-win32\csharpplayer\bin\Debug\csharpplayer.exe
+D:\player\Iermu-Aitools\Iermu-Player\player-win32\csharpplayer\bin\Debug\csharpplayer.pdb
+D:\player\Iermu-Aitools\Iermu-Player\player-win32\csharpplayer\obj\Debug\csharpplayer.csprojResolveAssemblyReference.cache
+D:\player\Iermu-Aitools\Iermu-Player\player-win32\csharpplayer\obj\Debug\csharpplayer.PlayerForm.resources
+D:\player\Iermu-Aitools\Iermu-Player\player-win32\csharpplayer\obj\Debug\csharpplayer.Properties.Resources.resources
+D:\player\Iermu-Aitools\Iermu-Player\player-win32\csharpplayer\obj\Debug\csharpplayer.csproj.GenerateResource.Cache
+D:\player\Iermu-Aitools\Iermu-Player\player-win32\csharpplayer\obj\Debug\csharpplayer.exe
+D:\player\Iermu-Aitools\Iermu-Player\player-win32\csharpplayer\obj\Debug\csharpplayer.pdb

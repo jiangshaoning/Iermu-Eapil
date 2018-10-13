@@ -1,0 +1,24 @@
+﻿<SOUI name="mainWindow" title="@string/title" bigIcon="ICON_LOGO:32" smallIcon="ICON_LOGO:16" width="960" height="540" minsize="960,540" margin="5,5,5,5"  resizable="1" wndType="appMain" appWnd="1" >
+  <root skin="_skin.bg">
+    <caption id="6000" pos="0,0,-0,40" show="1" display="0">
+      <icon pos="5,0" src="ICON_LOGO:32"/>
+      <text pos="35,10" colorText="@color/white">@string/title</text>
+      <imgbtn name="btn_close" skin="_skin.sysbtn_close"    pos="-35,0" tip="close" animate="1"/>
+      <imgbtn name="btn_max" skin="_skin.sysbtn_max"  pos="-73,0" animate="1" />
+      <imgbtn name="btn_restore" skin="_skin.sysbtn_restore"  pos="-73,0" show="0" animate="1" />
+      <imgbtn name="btn_min" skin="_skin.sysbtn_min" pos="-111,0" animate="1" />
+    </caption>
+    <!--window name="realplay_wnd" pos="0,0,]0,-0"-->
+    <realwnd pos="2,[0,-2,-50" name="ffplaywnd"  focusable="0" wndclass="CRealWndDlg" wndname="mainWindow" />
+    <!--/window-->
+    <caption id="7000" pos="0,-50,-0,-2" show="1" display="0">
+      <imgbtn name="btn_record" pos="40,13" size="36,30" cursor="hand"  tip="录屏" animate="1" skin="btn.record" />
+      <imgbtn name="btn_record_stop" pos="40,13" size="36,30" cursor="hand"  tip="停止" animate="1" show="0" skin="btn.record_stop" />
+      <imgbtn name="btn_snapshot" pos="[30,13" size="36,30" cursor="hand"  tip="抓拍" animate="1" skin="btn.snapshot" />
+      <imgbtn name="btn_volume" data="1" id="206" pos="|-60,16" cursor="hand" size="16,16" tip="静音" animate="1" skin="btn.volume" />
+      <imgbtn name="btn_volume_zero" data="1" id="206" pos="|-60,16" cursor="hand" size="16,16" tip="音量" animate="1" skin="btn.volume_zero" show="0"/>
+      <sliderbar name="volumeSlider" thumbInRail="0" cursor="hand" width="100" value="50" min="-182" max="73" pos="[0,15" thumbSkin="skin.SliderPlayvol_png" posSkin="skin.SliderForeVolume_png" bkgndSkin="skin.SliderBackVolume_png"  />
+      <imgbtn name="btn_screen_full" pos="-100,15" size="33,25" cursor="hand" tip="全屏" animate="1" skin="btn.screen_full" />
+    </caption>
+  </root>
+</SOUI>
