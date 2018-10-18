@@ -13,7 +13,10 @@ public:
 	//接受键盘输入
 	void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	void OnLbuttonDBLCLK(UINT nFlags, CPoint pt);
-	void OnLbuttonup(UINT nFlags, CPoint pt);
+	void OnLButtonDown(UINT nFlags, CPoint point);
+	void OnLButtonUp(UINT nFlags, CPoint point);
+	void OnMouseMove(UINT nFlags, CPoint point);
+	BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint point);
 	LRESULT openVideo(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	LRESULT closeVideo(UINT uMsg, WPARAM wParam, LPARAM lParam);
 	LRESULT playVideo(UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -30,7 +33,10 @@ protected:
 		//处理键盘按键消息
 		MSG_WM_KEYDOWN(OnKeyDown)
 		MSG_WM_LBUTTONDBLCLK(OnLbuttonDBLCLK)
-		MSG_WM_LBUTTONUP(OnLbuttonup)
+		MSG_WM_LBUTTONUP(OnLButtonUp)
+		MSG_WM_LBUTTONDOWN(OnLButtonDown)
+		MSG_WM_MOUSEMOVE(OnMouseMove)
+		MSG_WM_MOUSEWHEEL(OnMouseWheel)
 		MESSAGE_HANDLER_EX(MS_OPENVIDEO_REALWND, openVideo)
 		MESSAGE_HANDLER_EX(MS_CLOSEVIDEO_REALWND, closeVideo)
 		MESSAGE_HANDLER_EX(MSG_FANPLAYER, playVideo)	//播放器过来的渲染消息

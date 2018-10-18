@@ -14,23 +14,27 @@
 #include <math.h>
 
 typedef enum {
-    PANOCU_400W = 0,	//对应模板字符串	"standard400wTemplate"
-    PANOC2_200W,		//对应模板字符串	"panoc2_200w"
-    PORTAM_400W,		//对应模板字符串	"portam_400w"
-    PANO_500W,			//对应模板字符串	"pano_500w"
-    PANO_200W,			//对应模板字符串	"pano_200w"
-    PORT_500W,			//对应模板字符串	"port_500w"
-    PORT_200W,			//对应模板字符串	"port_200w"
-    OTHER_1920_960,		//对应模板字符串	"other_1920_960"
-    PANO_4K,			//对应模板字符串	"qf_200w"
+	PANOCU_400W = 0,	
+	PANOC2_200W,		
+	PORTAM_400W,		
+	PANO_500W,			
+	PANO_200W,			
+	PORT_500W,			
+	PORT_200W,			
+	OTHER_1920_960,		
+	PANO_4K,			
 	PANO_4KXY,
-    QF_200W,			//对应模板字符串	"pano_4K"
-    PANOC2_200W_EPBIN,	//PANOC2_200W用小熊写的我们自己的固件
-    PANO_LX_400W,
-	SINGLE_LENS_CHECK_200W,		//用于单镜头检测
-	OPTICS_MODULE_CHECK_200W,	//用于光学模组检测
-	PRISM_INSPECTION_200W,		// 用于棱镜检测工具
+	QF_200W,			
+	PANOC2_200W_EPBIN,	
+	PANO_LX_400W,
+	SINGLE_LENS_CHECK_200W,		
+	OPTICS_MODULE_CHECK_200W,	
+	PRISM_INSPECTION_200W,		
 	XYFW_4K,
+	XYFW_1K,
+	LX_500W,					
+	PANOC2_200W_EPBIN_PUB,		
+	JD_200W,			
     NO_EAPIL_DEVICE
 }EP_DEVICE_TYPE_ENUM;
 

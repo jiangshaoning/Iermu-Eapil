@@ -73,6 +73,8 @@ typedef void(*SaveScreenCallBack)(unsigned char *rgbaData, int width, int height
 * @param RENDERBALLTWOSCREEN 两分屏模式
 * @param RENDERBALLFOURSCREEN 四分屏模式
 * @param RENDERBALLTHREESCREEN 三分屏模式
+* @param RENDERCYLINDER 滚筒
+* @param RENDERMULT 综合
 */
 typedef enum
 {
@@ -83,7 +85,9 @@ typedef enum
 	RENDERBALLORTHO,
 	RENDERBALLTWOSCREEN,
 	RENDERBALLFOURSCREEN,
-	RENDERBALLTHREESCREEN
+	RENDERBALLTHREESCREEN,
+	RENDERBALLCYLINDER,
+	RENDERBALLMULT
 }PlayerType;
 
 /**

@@ -1,2 +1,4 @@
-﻿  Iermu-Eapil.cpp
+﻿  PlayerDlg.cpp
+d:\player\iermu-eapil\iermu-eapil\playerdlg.cpp(78): warning C4305: “=”: 从“int”到“char”截断
+d:\player\iermu-eapil\iermu-eapil\playerdlg.cpp(78): warning C4309: “=”: 截断常量值
   Iermu-Eapil.vcxproj -> D:\player\Iermu-Eapil\Debug\Iermu-Eapil.exe

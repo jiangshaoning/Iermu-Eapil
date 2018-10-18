@@ -6,10 +6,16 @@
   <imglist name="_skin.sysbtn_min"	src="PNG:ID_SYSBTN_MIN" states="3"/>
   <imglist name="_skin.sysbtn_restore" src="PNG:ID_SYSBTN_RESTORE" states="3"/>
   <imgframe name="_skin.bg" src="PNG:ID_PNG_BG" />
+  <imgframe name="_skin.bk_main" src="PNG:ID_MAIN_BK" margin-x="1" margin-y="1" />
+  <imgframe name="_skin.scorllbar" src="PNG:ID_SCORLLBAR" states="3" margin="4" />
+  <imgframe name="_skin.treeview_header_expand" src="PNG:ID_TREEVIEW_HEADER_EXPAND"/>
   <imglist name="skin.SliderBackVolume_png" src="PNG:ID_SLIDERBACKVOLUME" />
   <imglist name="skin.SliderForeVolume_png" src="PNG:ID_SLIDERFOREVOLUME" />
   <imglist name="skin.SliderPlayThumb_png" src="PNG:ID_SLIDERPLAYTHUMB" states="4" />
   <imglist name="skin.SliderPlayvol_png" src="PNG:ID_SLIDERPLAYVOLUM" states="4" />
+  <imglist name="btn.stop_png" src="BTN:ID_STOP_BTN" states="4" />
+  <imglist name="btn.play_png" src="BTN:ID_PLAY_BTN" states="4" />
+  <imglist name="btn.pause_png" src="BTN:ID_PAUSE_BTN" states="4" />
   <imglist name="btn.volume" src="BTN:ID_VOLUME_BTN" states="4" />
   <imglist name="btn.volume_zero" src="BTN:ID_VOLUME_ZERO_BTN" states="4" />
   <imglist name="btn.snapshot" src="BTN:ID_SNAPSHOT_BTN" states="3" />
@@ -17,4 +23,8 @@
   <imglist name="btn.record_stop" src="BTN:ID_RECORD_STOP_BTN" states="3" />
   <imglist name="btn.screen_full" src="BTN:ID_SCREEN_FULL_BTN" states="4" />
   <imglist name="btn.screen_normal" src="BTN:ID_SCREEN_NORMAL_BTN" states="4" />
+  <imglist name="btn.playlist" src="BTN:ID_PLAYLIST_BTN" states="3" />
+  <imglist name="btn.playmode_png" src="BTN:ID_PLAYMODE_BTN" states="4" />
+  <imglist name="btn.playadd_png" src="BTN:ID_PLAYADD_BTN" states="4" />
+  <imglist name="btn.playdelete_png" src="BTN:ID_PLAYDELETE_BTN" states="4" />
 	</skin>

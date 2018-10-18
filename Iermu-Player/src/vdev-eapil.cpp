@@ -88,13 +88,18 @@ static void* EapilRenderThreadProc(void *param)
 		MessageBox(NULL, L"不能激活当前的OpenGL渲然描述表", L"错误", MB_OK | MB_ICONEXCLAMATION);
 		return NULL;
 	}
+	c->_renderControl->SetExpireKey("E8414C234E5C32A99D992398089A53BA93CA02EFAE937EB1B40290E85058381E4F417FCF77196C73F0D14178888604246F4526B6B29D32BCC366A5781B1D6713");
 	c->_renderControl->InitOpenGL();
 	while (c->_renderThreadRun)
 	{
+		if (c->status & VDEV_CLOSE) break;
+
 		c->_renderControl->Render();
 		SwapBuffers(c->_hDC);
 		Sleep(5);
 	}
+	glClear(GL_COLOR_BUFFER_BIT);
+	SwapBuffers(c->_hDC);
 	c->_renderControl->UnInitOpenGL();
 
 	if (c->_hRC)
@@ -115,6 +120,7 @@ static void* EapilRenderThreadProc(void *param)
 		MessageBox(NULL, L"释放DC失败。", L"关闭错误", MB_OK | MB_ICONINFORMATION);
 		c->_hDC = NULL;
 	}
+
 	return NULL;
 }
 
@@ -217,9 +223,11 @@ void vdev_eapil_destroy(void *ctxt)
 	sem_destroy(&c->semr);
 	sem_destroy(&c->semw);
 	delete c->_renderControl;
+	c->_renderControl = NULL;
 	if (c->ppts) free(c->ppts);
+	c->ppts = NULL;
 	if (c) free(c);
-
+	c = NULL;
 }
 
 
@@ -322,9 +330,8 @@ void* vdev_eapil_create(void *surface, int bufnum, int w, int h, int frate, char
 	RECT rect;
 	GetWindowRect((HWND)ctxt->surface, &rect);
 	int ww = rect.right - rect.left;
-	int hh = -rect.top + rect.bottom;
+	int hh = rect.bottom - rect.top;
 	ctxt->_renderControl->SetWindow(ww, hh);
-
 	//test
 	//ctxt->_renderControl->LoadTemplate("6c0ca87ff17b22a3c4a1967b41f6c000e79e6deda8e54c2d71b0000eb28e5d0580cc1b86767ee74e441409a2984f8ac9aeb5998e1dc1a5aff3e6e78f9b3179720e2e15d03509dbfad47407982bc49d6a4a7aee9e217d456fe7738f161bd0f580f52df72e69833ee9da8523bfd721fb89cb61922828fe57847fbfb45f3fe40b879ba45260de382ca8c3c0e256b2e73c9b60fdd7201ec06c2a1b3a5b151c98dfeabe263f0d71db7d2848ca845fdb03f3ffa0650e16f34d0089b783aa5184d0633a902d1b8d9f073d0fc3591ce0006c152e110db8ce4a521a5feb39675ceff453495a9ea9168d7e61e6b173ed75594aa0661c18cf40661cd826cc5d9f3635542e0c5e61edb75793eab1ae11b504774e58560304baa43640b0690e045a91c4e53c576c8fe8af3172796534bee503044597b4f804afbf4ed31edd15308bb001dec9e7f3dcb9aec11eb8ac7b18d36900ae2802c9b49efb4a39653e6181c8c020635b162a1b2167c40dfc0d1e94cadf86810a9637df173f7f96d6cb1f6966d8106c2deffd880197f1b18ced564e518438bb9d0a147f1ac3154955b4101b87ad89895a3350c9c7e399f8fed3c3b241c84e29e6eb5e56ba2fe71b7049a74cd594d6445b3d94b7b79e4137e222812a5fa62becc204861a8bd63f719f025d5470a55ca1a1d1db669e8643480c634d7010dad1d0e93c", STRINGEN);
 	ctxt->_renderControl->LoadTemplate(temp, STRINGEN);

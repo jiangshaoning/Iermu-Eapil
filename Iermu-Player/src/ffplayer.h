@@ -170,6 +170,12 @@ void  player_textcfg (void *hplayer, TCHAR *fontname, int fontsize);
 void  player_send_message(void *extra, int32_t msg, int64_t param);
 void  player_load_params (PLAYER_INIT_PARAMS *params, char *str);
 
+void  player_leftbtndown(void *hplayer, int x, int y);
+void  player_leftbtnup(void *hplayer);
+void  player_mousemove(void *hplayer, int x, int y);
+void  player_mousewheel(void *hplayer, short delta);
+void  player_setrendertype(void *hplayer, int type);
+
 // 函数说明
 /*
 player_open     创建一个 player 对象

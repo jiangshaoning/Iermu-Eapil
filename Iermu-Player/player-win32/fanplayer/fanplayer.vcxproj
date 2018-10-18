@@ -75,6 +75,9 @@
     <Manifest>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Manifest>
+    <PostBuildEvent>
+      <Command>copy  $(OutDir)$(ProjectName).lib $(SolutionDir)Iermu-Eapil\lib\$(ProjectName).lib</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -97,7 +100,7 @@
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>
     </Link>
     <PostBuildEvent>
-      <Command>copy  $(OutDir)$(ProjectName).lib $(SolutionDir)Iermu-Eapil\lib\player</Command>
+      <Command>copy  $(OutDir)$(ProjectName).lib $(SolutionDir)Iermu-Eapil\lib\$(ProjectName).lib</Command>
     </PostBuildEvent>
     <Manifest>
       <AdditionalOptions>/SAFESEH:NO %(AdditionalOptions)</AdditionalOptions>

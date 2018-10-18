@@ -186,6 +186,7 @@
     <Text Include="readme.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="FilesHelp.cpp" />
     <ClCompile Include="Iermu-Eapil.cpp" />
     <ClCompile Include="PlayerDlg.cpp" />
     <ClCompile Include="RealWndDlg.cpp" />
@@ -201,7 +202,9 @@
     <ResourceCompile Include="Iermu-Eapil.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FilesHelp.h" />
     <ClInclude Include="PlayerDlg.h" />
+    <ClInclude Include="PlayListAdapter.h" />
     <ClInclude Include="RealWndDlg.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SouiRealWndHandler.h" />

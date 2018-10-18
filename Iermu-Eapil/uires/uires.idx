@@ -18,12 +18,18 @@
     <file name="ID_SYSBTN_MIN" path="image\sysbtn_min.png"/>
     <file name="ID_SYSBTN_RESTORE" path="image\sysbtn_restore.png"/>
     <file name="ID_PNG_BG" path="image\bg.png" />
+    <file name="ID_MAIN_BK" path="image\bk_main.png" />
+    <file name="ID_SCORLLBAR" path="image\vscrollbar.png" />
     <file name="ID_SLIDERBACKVOLUME" path="image\SliderBackVolume.png"/>
     <file name="ID_SLIDERFOREVOLUME" path="image\SliderForeVolume.png"/>
     <file name="ID_SLIDERPLAYTHUMB" path="image\SliderPlayThumb.png"/>
     <file name="ID_SLIDERPLAYVOLUM" path="image\SliderPlayvolum.png"/>
+    <file name="ID_TREEVIEW_HEADER_EXPAND" path="image\treeview_header_expand.png" />
 	</PNG>
   <BTN>
+    <file name="ID_STOP_BTN" path="image\btn_stop.png" />
+    <file name="ID_PLAY_BTN" path="image\btn_play.png" />
+    <file name="ID_PAUSE_BTN" path="image\btn_pause.png" />
     <file name="ID_VOLUME_BTN" path="image\btn_volume.png" />
     <file name="ID_VOLUME_ZERO_BTN" path="image\btn_volume_zero.png" />
     <file name="ID_SNAPSHOT_BTN" path="image\btn_snapshot.png" />
@@ -31,6 +37,10 @@
     <file name="ID_RECORD_STOP_BTN" path="image\btn_record_stop.png" />
     <file name="ID_SCREEN_FULL_BTN" path="image\btn_screen_full.png" />
     <file name="ID_SCREEN_NORMAL_BTN" path="image\btn_screen_normal.png" />
+    <file name="ID_PLAYLIST_BTN" path="image\btn_playlist.png" />
+    <file name="ID_PLAYMODE_BTN" path="image\btn_playmode.png" />
+    <file name="ID_PLAYADD_BTN" path="image\btn_playadd.png" />
+    <file name="ID_PLAYDELETE_BTN" path="image\btn_playdelete.png" />
   </BTN>
   <ICON>
     <file name="ICON_LOGO"  path="image\Iermu-Eapil.ico"/>

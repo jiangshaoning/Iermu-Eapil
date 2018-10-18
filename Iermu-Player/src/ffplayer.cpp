@@ -288,24 +288,26 @@ static int init_stream(PLAYER *player, enum AVMediaType type, int sel) {
             }
             //- try to set video decoding thread count
             decoder = avcodec_find_decoder(player->vcodec_context->codec_id);
-#if 1		//jsn
-			AVDictionary *opts = NULL;
-			av_dict_set(&opts, "threads", "auto", 0);
-			if (decoder && avcodec_open2(player->vcodec_context, decoder, &opts) == 0) {
-				player->vstream_index = idx;
+			if (player->init_params.vdev_render_type == VDEV_RENDER_TYPE_EAPIL)
+			{
+				AVDictionary *opts = NULL;
+				av_dict_set(&opts, "threads", "auto", 0);
+				if (decoder && avcodec_open2(player->vcodec_context, decoder, &opts) == 0) {
+					player->vstream_index = idx;
+				}
+				else {
+					av_log(NULL, AV_LOG_WARNING, "failed to find or open decoder for video !\n");
+				}
 			}
-			else {
-				av_log(NULL, AV_LOG_WARNING, "failed to find or open decoder for video !\n");
-			}
-			av_dict_free(&opts);
-#else
-            if (decoder && avcodec_open2(player->vcodec_context, decoder, NULL) == 0) {
-                player->vstream_index = idx;
-            } else {
-                av_log(NULL, AV_LOG_WARNING, "failed to find or open decoder for video !\n");
-            }
-#endif
-			
+			else
+			{
+				if (decoder && avcodec_open2(player->vcodec_context, decoder, NULL) == 0) {
+					player->vstream_index = idx;
+				}
+				else {
+					av_log(NULL, AV_LOG_WARNING, "failed to find or open decoder for video !\n");
+				}
+			}			
             // get the actual video decoding thread count
             player->init_params.video_thread_count = player->vcodec_context->thread_count;
         }
@@ -942,6 +944,10 @@ void player_setrect(void *hplayer, int type, int x, int y, int w, int h)
     case VIDEO_MODE_STRETCHED: rw = w; rh = h; break;
     }
 
+	if (player->init_params.vdev_render_type == VDEV_RENDER_TYPE_EAPIL)
+	{
+		rw = w; rh = h;
+	}		
     if (rw <= 0) rw = 1;
     if (rh <= 0) rh = 1;
     render_setrect(player->render, type, x + (w - rw) / 2, y + (h - rh) / 2, rw, rh);

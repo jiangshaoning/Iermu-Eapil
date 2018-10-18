@@ -71,13 +71,62 @@ void CRealWndDlg::OnLbuttonDBLCLK(UINT nFlags, CPoint pt)
 	SetMsgHandled(false);
 }
 
-void CRealWndDlg::OnLbuttonup(UINT nFlags, CPoint pt)
+//void CRealWndDlg::OnLbuttonup(UINT nFlags, CPoint pt)
+//{
+//
+//	//if (GetWindowRect().PtInRect(pt))//µ¥»÷²¥·Å/ÔÝÍ£
+//	//	::SendMessageW(SApplication::getSingleton().GetMainWnd(), MS_REALWND, 0, (LPARAM)(int)14);
+//	SetMsgHandled(false);
+//
+//}
+
+void CRealWndDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
+	if (m_dlgplayer)
+	{
+		player_leftbtndown(m_dlgplayer->m_hplayer, point.x, point.y);
+	}
 
-	//if (GetWindowRect().PtInRect(pt))//µ¥»÷²¥·Å/ÔÝÍ£
-	//	::SendMessageW(SApplication::getSingleton().GetMainWnd(), MS_REALWND, 0, (LPARAM)(int)14);
-	SetMsgHandled(false);
+	//if (!m_bLiveStream) {
+	//	if (point.y > m_rtClient.bottom - 8) {
+	//		LONGLONG total = 1;
+	//		player_getparam(m_ffPlayer, PARAM_MEDIA_DURATION, &total);
+	//		KillTimer(TIMER_ID_PROGRESS);
+	//		player_seek(m_ffPlayer, total * point.x / m_rtClient.right, SEEK_PRECISELY);
+	//		SetTimer(TIMER_ID_PROGRESS, 100, NULL);
+	//	}
+	//	else {
+	//		if (!m_bPlayPause) player_pause(m_dlgplayer->m_hplayer);
+	//		else player_play(m_ffPlayer);
+	//		m_bPlayPause = !m_bPlayPause;
+	//	}
+	//}
+}
 
+void CRealWndDlg::OnLButtonUp(UINT nFlags, CPoint point)
+{
+	if (m_dlgplayer)
+	{
+		player_leftbtnup(m_dlgplayer->m_hplayer);
+	}
+}
+
+void CRealWndDlg::OnMouseMove(UINT nFlags, CPoint point)
+{
+	if (m_dlgplayer)
+	{
+		player_mousemove(m_dlgplayer->m_hplayer, point.x, point.y);
+	}
+}
+
+BOOL CRealWndDlg::OnMouseWheel(UINT nFlags, short zDelta, CPoint point)
+{
+	if (m_dlgplayer)
+	{
+		player_mousewheel(m_dlgplayer->m_hplayer, zDelta);
+		return TRUE;
+	}
+	return TRUE;
 }
 
 LRESULT CRealWndDlg::openVideo(UINT uMsg, WPARAM wParam, LPARAM lParam)
@@ -95,7 +144,17 @@ LRESULT CRealWndDlg::closeVideo(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 LRESULT CRealWndDlg::playVideo(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-	player_play(m_dlgplayer->m_hplayer);
+	switch (wParam)
+	{
+	case MSG_OPEN_DONE:
+		player_play(m_dlgplayer->m_hplayer);
+		m_dlgplayer->OnPlaySwitchPause();
+		break;
+	case MSG_PLAY_COMPLETED:
+		//RELEASEPLAYER(m_dlgplayer->m_hplayer);
+		m_dlgplayer->OnPlaySwitchPause();
+		break;
+	}
 	return 0;
 }
 

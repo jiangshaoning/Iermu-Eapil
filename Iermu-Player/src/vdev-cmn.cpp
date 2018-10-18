@@ -26,6 +26,7 @@ void* vdev_create(int type, void *surface, int bufnum, int w, int h, int frate, 
     _tcscpy(c->font_name, DEF_FONT_NAME);
     c->font_size = DEF_FONT_SIZE;
     c->status   |= VDEV_CONFIG_FONT;
+	c->rendertype = type;
 #endif
 #ifdef ANDROID
     c = (VDEV_COMMON_CTXT*)vdev_android_create(surface, bufnum, w, h, frate);

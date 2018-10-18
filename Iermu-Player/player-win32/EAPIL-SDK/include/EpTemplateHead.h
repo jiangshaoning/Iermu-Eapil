@@ -12,6 +12,8 @@ typedef enum
     TWO_MILLION,            // 2百万分辨率摄像机
 	EIGHT_MILLION,			// 8百万分辨率摄像机
 	EIGHT_MILLION_XYFW,		// 8百万分辨率摄像机
+	FHT_XYFW,				// 50万分辨率
+	FIVE_MILLION_LX,		// 500万分辨率
     UN_SUPPORT              // 未知分辨率摄像机
 }VIDEO_RES;
 
@@ -67,12 +69,14 @@ typedef struct
 
 typedef enum
 {
-    CAMERAEN = 0,               //从相机读取加密模板
-    LOCAL,			//从本地读取加密或者非加密文件
-    STRINGEN,                   //读取加密字符串
-    STRING,			//读取非加密字符串
-    REMOTE,			//从远程获取带加密模板（url）
-	STRINGENEXT1	//新格式模板
+	CAMERAEN = 0,               //从相机读取加密模板
+	LOCAL,			//从本地读取加密或者非加密文件
+	STRINGEN,                   //读取加密字符串
+	STRING,			//读取非加密字符串
+	REMOTE,			//从远程获取带加密模板（url）
+	STRINGENEXT1,	//新格式模板114 QF//丢弃
+	STRINGENEXT2,	//新格式模板161
+	NONETYPE
 }TemplateType;
 
 typedef struct tagEpTemplateCtx

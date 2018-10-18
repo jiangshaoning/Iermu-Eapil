@@ -8,17 +8,68 @@
       <imgbtn name="btn_restore" skin="_skin.sysbtn_restore"  pos="-73,0" show="0" animate="1" />
       <imgbtn name="btn_min" skin="_skin.sysbtn_min" pos="-111,0" animate="1" />
     </caption>
-    <!--window name="realplay_wnd" pos="0,0,]0,-0"-->
-    <realwnd pos="2,[0,-2,-50" name="ffplaywnd"  focusable="0" wndclass="CRealWndDlg" wndname="mainWindow" />
-    <!--/window-->
-    <caption id="7000" pos="0,-50,-0,-2" show="1" display="0">
-      <imgbtn name="btn_record" pos="40,13" size="36,30" cursor="hand"  tip="录屏" animate="1" skin="btn.record" />
-      <imgbtn name="btn_record_stop" pos="40,13" size="36,30" cursor="hand"  tip="停止" animate="1" show="0" skin="btn.record_stop" />
-      <imgbtn name="btn_snapshot" pos="[30,13" size="36,30" cursor="hand"  tip="抓拍" animate="1" skin="btn.snapshot" />
-      <imgbtn name="btn_volume" data="1" id="206" pos="|-60,16" cursor="hand" size="16,16" tip="静音" animate="1" skin="btn.volume" />
-      <imgbtn name="btn_volume_zero" data="1" id="206" pos="|-60,16" cursor="hand" size="16,16" tip="音量" animate="1" skin="btn.volume_zero" show="0"/>
-      <sliderbar name="volumeSlider" thumbInRail="0" cursor="hand" width="100" value="50" min="-182" max="73" pos="[0,15" thumbSkin="skin.SliderPlayvol_png" posSkin="skin.SliderForeVolume_png" bkgndSkin="skin.SliderBackVolume_png"  />
-      <imgbtn name="btn_screen_full" pos="-100,15" size="33,25" cursor="hand" tip="全屏" animate="1" skin="btn.screen_full" />
-    </caption>
+
+    <window pos="0,[0,-0,-0" colorBkgnd="#000000ff">
+      <tabctrl pos="0,0,-0,-50" tabAlign="top" tabSkin="" tabInterSize="2" tabWidth="0" tabHeight="0" colorText="#FFFFFF" focusable="0" show="1" curSel="0" name="maintab">
+        <page>
+          <window name="realplay_wnd" pos="0,0,]0,-0">
+            <realwnd pos="0,0,-0,-0" name="ffplaywnd"  focusable="0" wndclass="CRealWndDlg" wndname="mainWindow" />
+          </window>
+          <window id="8000" pos="-260,0,-0,-0" display="0" show="1" skin="_skin.bk_main">
+            <window pos="0,0,-0,@30" skin="_skin.treeview_header_expand" align="left" valign="middle"> 播放列表
+              <imgbtn id="700" pos="200,6" size="22,22" tip="增加" animate="1" skin="btn.playadd_png" />
+              <imgbtn id="701" pos="[10,6" size="22,22" tip="删除" animate="1" skin="btn.playdelete_png" />
+              <!--imgbtn id="702" pos="[15,6" size="22,22" tip="播放顺序" animate="1" skin="btn.playmode_png" /-->
+            </window>
+            <listview pos="5,[5,-5,-5" sbSkin="_skin.scorllbar" name="lv_play_list" dividerSize="1">
+              <template itemHeight="25" colorHover="#548B48" colorSelected="#DF861B">
+                <text pos="0,0," colorText="#ffffffff" name="filename" tip="123">btn</text>
+              </template>
+            </listview>
+          </window>
+        </page>
+        <page >
+          <window pos="0,0,-0,-0">
+            <realwnd pos="0,0,-0,-0" name="depotwnd"  focusable="0" wndclass="CRealWndDlg_DEPOT" wndname="mainWindow" />
+          </window>
+        </page>
+        <page >
+          <window pos="0,0,-0,-0">
+            <realwnd pos="0,0,-0,-0" name="skinwnd"  focusable="0" wndclass="CRealWndDlg_SKIN" wndname="mainWindow" />
+          </window>
+        </page>
+        <page>
+          <window pos="0,0,-0,-0">
+            <realwnd pos="0,0,-0,-0" name="urlwnd"  focusable="0" wndclass="CRealWndDlg_URL" wndname="mainWindow" />
+          </window>
+        </page>
+        <page>
+          <window pos="0,0,-0,-0">
+            <realwnd pos="0,0,-0,-0" name="aboutwnd"  focusable="0" wndclass="CRealWndDlg_ABOUT" wndname="mainWindow" />
+          </window>
+        </page>
+      </tabctrl>
+      <!--window id="121" display="0" show="1" pos="0,-60,-0,@12">
+        <imgbtn id="610" pos="0,0" size="17,12" tip="" animate="1" skin="image_btn_fast_backward_png" />
+        <sliderbar name="sliderbarpos" thumbInRail="0" cursor="hand" value="0" min="0" max="1000" pos="[0,0,-17,-0" thumbSkin="image_SliderPlayThumb_png" posSkin="image_SliderForeVolume_png" bkgndSkin="image_SliderBackVolume_png" />
+        <imgbtn id="611" pos="[0,0" size="17,12" tip="" animate="1" skin="image_btn_fast_forward_png" />
+      </window-->
+      <caption id="7000" skin="_skin.bg" pos="0,-50,-0,-2">
+        <imgbtn id="200" pos="30,13" size="36,30" cursor="hand" tip="播放" animate="1" skin="btn.play_png" />
+        <imgbtn id="201" pos="30,13" size="36,30" cursor="hand" tip="暂停" animate="1" skin="btn.pause_png" show="0" />
+        <imgbtn id="202" pos="[20,13" size="36,30" cursor="hand" tip="停止" animate="1" skin="btn.stop_png" />
+        <imgbtn name="btn_record" pos="150,13" size="36,30" cursor="hand"  tip="录屏" animate="1" skin="btn.record" />
+        <imgbtn name="btn_record_stop" pos="150,13" size="36,30" cursor="hand"  tip="停止" animate="1" show="0" skin="btn.record_stop" />
+        <imgbtn name="btn_snapshot" pos="[30,13" size="36,30" cursor="hand"  tip="抓拍" animate="1" skin="btn.snapshot" />
+        <imgbtn name="btn_volume" data="1" id="206" pos="|-60,16" cursor="hand" size="16,16" tip="静音" animate="1" skin="btn.volume" />
+        <imgbtn name="btn_volume_zero" data="1" id="206" pos="|-60,16" cursor="hand" size="16,16" tip="音量" animate="1" skin="btn.volume_zero" show="0"/>
+        <sliderbar name="volumeSlider" thumbInRail="0" cursor="hand" width="100" value="50" min="-182" max="73" pos="[0,15" thumbSkin="skin.SliderPlayvol_png" posSkin="skin.SliderForeVolume_png" bkgndSkin="skin.SliderBackVolume_png"  />
+        <imgbtn name="btn_screen_full" pos="-100,15" size="33,25" cursor="hand" tip="全屏" animate="1" skin="btn.screen_full" />
+        <imgbtn name="btn_playlist" pos="-40,15" size="30,25" cursor="hand" tip="播放列表" animate="1" skin="btn.playlist" />
+      </caption>
+
+    </window>
+
+
   </root>
 </SOUI>
