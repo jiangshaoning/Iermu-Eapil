@@ -100,6 +100,9 @@ enum {
     PARAM_RENDER_STEPFORWARD,
     //-- for render
 
+	//play status
+	PARAM_PLAYER_STATUS,
+
 	//low delay play
 	PARAM_PLAY_LOW_DELAY,
 };

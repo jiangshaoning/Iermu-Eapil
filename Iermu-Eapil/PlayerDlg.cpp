@@ -8,7 +8,8 @@
 #include <time.h>
 #include <shellapi.h>
 
-#define TIMER_ID_HIDE_TEXT     3
+#define TIMER_ID_HIDE_TEXT			3
+#define TIMER_ID_PLAYING_PROGRESS	1
 
 const TCHAR STR_MOVE_FILE_FILTER[] =
 _T("媒体文件(所有类型)\0*.asf;*.avi;*.wm;*.wmp;*.wmv;*.ram; *.rm; *.rmvb; *.rp; *.rpm; *.rt; *.smi; *.smil;*.dat; *.m1v; *.m2p; *.m2t; *.m2ts; *.m2v; *.mp2v; *.mpeg; *.mpe; *.mpg; *.mpv2; *.pss; *.pva; *.tp; *.tpr; *.ts;*.m4b; *.m4p; *.m4v; *.mp4; *.mpeg4; *.mov; *.qt; *.f4v; *.flv; *.hlv; *.swf; *.ifo; *.vob;*.3g2; *.3gp; *.3gp2; *.3gpp; *.amv; *.bik; *.csf; *.divx; *.evo; *.ivm; *.mkv; *.mod; *.mts; *.ogm; *.pmp; *.scm; *.tod; *.vp6; *.webm; *.xlmv;*.aac; *.ac3; *.amr; *.ape; *.cda; *.dts; *.flac; *.mla; *.m2a; *.m4a; *.mid; *.midi; *.mka; *.mp2; *.mp3; *.mpa; *.ogg; *.ra; *.tak; *.tta; *.wav; *.wma; *.wv;\0")
@@ -173,8 +174,8 @@ PlayerDlg::PlayerDlg() : SHostWnd(_T("LAYOUT:XML_MAINWND"))
 	m_bFullScreenMode = FALSE;
 	m_bOpenPlayList = TRUE;
 	m_captionHeight = 40;
-	m_toolsHeight = 50;
-	m_listWidth = 0;
+	m_toolsHeight = 60;
+	m_listWidth = 260;
 	memset(m_playUrl, 0, sizeof(m_playUrl));
 }
 
@@ -217,6 +218,11 @@ BOOL PlayerDlg::OnInitDialog(HWND hWnd, LPARAM lParam)
 
 	//	::SendMessageW(PlayHwnd, MS_OPENVIDEO_REALWND, 0, (LPARAM)(void *)this);
 	//}
+	m_Sliderbarpos = FindChildByName2<SSliderBar>(L"sliderbarpos");
+	if (m_Sliderbarpos)
+	{
+		m_Sliderbarpos->SetRange(0, 1000);
+	}
 
 	m_VolumeSlider = FindChildByName2<SSliderBar>(L"volumeSlider");
 	if (m_VolumeSlider)
@@ -282,6 +288,11 @@ void PlayerDlg::OnSize(UINT nType, CSize size)
 		pBtnMax->SetVisible(TRUE);
 	}
 
+}
+
+void PlayerDlg::OnPlayProgress()
+{
+	SetTimer(TIMER_ID_PLAYING_PROGRESS, 1000);
 }
 
 void PlayerDlg::Play(const char *url)
@@ -372,8 +383,23 @@ void PlayerDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 void PlayerDlg::OnTimer(UINT_PTR nIDEvent)
 {
+	int64_t pos = 0;
+	int64_t total = 1;
+	int value = 0;
 	switch (nIDEvent)
 	{
+	case TIMER_ID_PLAYING_PROGRESS:
+		if (!m_hplayer)
+		{
+			KillTimer(TIMER_ID_PLAYING_PROGRESS);
+			break;
+		}
+		player_getparam(m_hplayer, PARAM_MEDIA_DURATION, &total);
+		player_getparam(m_hplayer, PARAM_MEDIA_POSITION, &pos);
+		value = (int)(1000 * pos / total);
+		m_Sliderbarpos->SetValue(value);
+
+		break;
 	case TIMER_ID_HIDE_TEXT:
 		KillTimer(TIMER_ID_HIDE_TEXT);
 		player_textout(m_hplayer, 0, 0, 0, NULL);
@@ -433,7 +459,6 @@ void PlayerDlg::OnRecord()
 void PlayerDlg::OnSnapshot()
 {
 	if (!m_hplayer) return;
-	player_seek(m_hplayer, 110000, 0);
 
 	char ctime[40] = { 0 };
 	wchar_t wtime[48] = { 0 };
@@ -488,7 +513,7 @@ void PlayerDlg::FullScreen(BOOL bFull)
 	else
 	{
 		m_captionHeight = 40;
-		m_toolsHeight = 50;
+		m_toolsHeight = 60;
 		::SetWindowPlacement(m_hWnd, &m_OldWndPlacement);
 		::SetWindowPos(m_hWnd, HWND_NOTOPMOST, 0, 0, m_listWidth, m_captionHeight + m_toolsHeight, SWP_NOSIZE | SWP_NOMOVE);
 
@@ -536,10 +561,23 @@ void PlayerDlg::OnPlaySwitchPause()
 
 void PlayerDlg::OnBtnPlay()
 {
+	int status = 0;;
 	CPlayListWnd *pAdapter = (CPlayListWnd*)m_Play_List_Wnd->GetAdapter();
 	int m_items = m_Play_List_Wnd->GetSel();
+	if (m_items < 0) return;
+
 	string path = S_CT2A(pAdapter->Get_index_Path(m_items));
-	Play(path.c_str());
+	player_getparam(m_hplayer, PARAM_PLAYER_STATUS, &status);
+	if (status >> 2 & 1)
+	{
+		player_play(m_hplayer);
+	}
+	else
+	{
+		m_Sliderbarpos->SetValue(0);
+		Play(path.c_str());
+	}
+
 }
 
 void PlayerDlg::OnBtnPause()
@@ -587,8 +625,26 @@ void PlayerDlg::OnAddfiles_MenuBtn()
 
 void PlayerDlg::OnLButtonUp(UINT nFlags, CPoint pt)//处理进度条鼠标事件 播放指定位置 此处没有用EventSliderPos事件
 {
+	if (m_Sliderbarpos->GetWindowRect().PtInRect(pt) && m_LButtonDown == 1)
+	{
+		LONGLONG inter = 0;
+		LONGLONG total = 1;
+		player_getparam(m_hplayer, PARAM_MEDIA_DURATION, &total);
+		inter = total / 1000;
+		player_seek(m_hplayer, (m_Sliderbarpos->GetValue()*inter) + 1, 0);
+	}
 	m_LButtonDown = 0;
 	SetMsgHandled(false);
+}
+
+void PlayerDlg::OnLButtonDown(UINT nFlags, CPoint pt)//处理进度条鼠标事件
+{
+	if (m_Sliderbarpos->GetWindowRect().PtInRect(pt))//处理进度条
+		m_LButtonDown = 1;
+	if (m_VolumeSlider->GetWindowRect().PtInRect(pt) && !m_voiceType)//处理音量
+		m_LButtonDown = 1;
+	SetMsgHandled(false);
+
 }
 
 //-182, 73
@@ -618,14 +674,6 @@ BOOL PlayerDlg::OnMouseWheel(UINT nFlags, short zDelta, CPoint point)
 		return TRUE;
 	}
 	return TRUE;
-}
-
-void PlayerDlg::OnLButtonDown(UINT nFlags, CPoint pt)//处理进度条鼠标事件
-{
-	if (m_VolumeSlider->GetWindowRect().PtInRect(pt) && !m_voiceType)//处理音量
-		m_LButtonDown = 1;
-	SetMsgHandled(false);
-
 }
 
 int PlayerDlg::irmFlvReadFileTemplate(char *FlvFile, unsigned char *FileLink)

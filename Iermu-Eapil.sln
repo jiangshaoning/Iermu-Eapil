@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Iermu-Eapil", "Iermu-Eapil\Iermu-Eapil.vcxproj", "{EC9A3ADF-986E-43CE-898C-E2C3EB66AAC2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2537A15B-F975-416D-8106-22CD6EDFCCDE} = {2537A15B-F975-416D-8106-22CD6EDFCCDE}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Iermu-Player", "Iermu-Player\player-win32\fanplayer\fanplayer.vcxproj", "{2537A15B-F975-416D-8106-22CD6EDFCCDE}"
 EndProject

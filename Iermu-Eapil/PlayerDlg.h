@@ -43,6 +43,7 @@ public:
 	void OnLButtonDown(UINT nFlags, CPoint pt);
 	void OnMouseMove(UINT nFlags, CPoint pt);
 	BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint point);
+	void OnPlayProgress();
 	void Play(const char *url);
 	LRESULT OnMsg_PLAY_FILE(UINT uMsg, WPARAM wp, LPARAM lp, BOOL & bHandled);//播放文件
 	LRESULT OnMsg_ADD_FILED(UINT uMsg, WPARAM wp, LPARAM lp, BOOL & bHandled);//增加文件完成后的通知
@@ -77,8 +78,8 @@ public:
 		MSG_WM_CLOSE(OnClose)
 		MSG_WM_SIZE(OnSize)
 		MSG_WM_TIMER(OnTimer)
-		//MSG_WM_LBUTTONDOWN(OnLButtonDown)
-		//MSG_WM_LBUTTONUP(OnLButtonUp)
+		MSG_WM_LBUTTONDOWN(OnLButtonDown)
+		MSG_WM_LBUTTONUP(OnLButtonUp)
 		//MSG_WM_MOUSEMOVE(OnMouseMove)
 		MSG_WM_MOUSEWHEEL(OnMouseWheel)
 		MSG_WM_KEYDOWN(OnKeyDown)
@@ -95,6 +96,7 @@ private:
 	BOOL			m_ctrl_down;
 	BOOL			m_bIsRecording;
 	SSliderBar*		m_VolumeSlider;
+	SSliderBar*		m_Sliderbarpos;
 	int				m_LButtonDown;
 	WINDOWPLACEMENT m_OldWndPlacement;  // 保存窗口原来的位置
 	int				m_listWidth;		// 右边list宽度

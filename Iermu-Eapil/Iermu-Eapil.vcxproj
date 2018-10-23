@@ -231,7 +231,9 @@
     <Xml Include="uires\values\color.xml" />
     <Xml Include="uires\values\skin.xml" />
     <Xml Include="uires\values\string.xml" />
-    <Xml Include="uires\xml\dlg_main.xml" />
+    <Xml Include="uires\xml\dlg_main.xml">
+      <SubType>Designer</SubType>
+    </Xml>
     <Xml Include="uires\xml\dlg_realwnd.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@
     </caption>
 
     <window pos="0,[0,-0,-0" colorBkgnd="#000000ff">
-      <tabctrl pos="0,0,-0,-50" tabAlign="top" tabSkin="" tabInterSize="2" tabWidth="0" tabHeight="0" colorText="#FFFFFF" focusable="0" show="1" curSel="0" name="maintab">
+      <tabctrl pos="0,0,-0,-60" tabAlign="top" tabSkin="" tabInterSize="2" tabWidth="0" tabHeight="0" colorText="#FFFFFF" focusable="0" show="1" curSel="0" name="maintab">
         <page>
           <window name="realplay_wnd" pos="0,0,]0,-0">
             <realwnd pos="0,0,-0,-0" name="ffplaywnd"  focusable="0" wndclass="CRealWndDlg" wndname="mainWindow" />
@@ -49,11 +49,11 @@
           </window>
         </page>
       </tabctrl>
-      <!--window id="121" display="0" show="1" pos="0,-60,-0,@12">
-        <imgbtn id="610" pos="0,0" size="17,12" tip="" animate="1" skin="image_btn_fast_backward_png" />
-        <sliderbar name="sliderbarpos" thumbInRail="0" cursor="hand" value="0" min="0" max="1000" pos="[0,0,-17,-0" thumbSkin="image_SliderPlayThumb_png" posSkin="image_SliderForeVolume_png" bkgndSkin="image_SliderBackVolume_png" />
-        <imgbtn id="611" pos="[0,0" size="17,12" tip="" animate="1" skin="image_btn_fast_forward_png" />
-      </window-->
+      <window id="121" display="0" show="1" pos="0,-60,-0,@10">
+        <!--imgbtn id="610" pos="0,0" size="17,12" tip="" animate="1" skin="image_btn_fast_backward_png" /-->
+        <sliderbar name="sliderbarpos" thumbInRail="0" cursor="hand" value="0" min="0" max="1000" pos="0,0,-0,-0" thumbSkin="skin.SliderPlayThumb_png" posSkin="skin.SliderForeVolume_png" bkgndSkin="skin.SliderBackVolume_png" />
+        <!--imgbtn id="611" pos="[0,0" size="17,12" tip="" animate="1" skin="image_btn_fast_forward_png" /-->
+      </window>
       <caption id="7000" skin="_skin.bg" pos="0,-50,-0,-2">
         <imgbtn id="200" pos="30,13" size="36,30" cursor="hand" tip="播放" animate="1" skin="btn.play_png" />
         <imgbtn id="201" pos="30,13" size="36,30" cursor="hand" tip="暂停" animate="1" skin="btn.pause_png" show="0" />

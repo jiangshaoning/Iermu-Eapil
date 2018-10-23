@@ -394,7 +394,7 @@ void render_video(void *hrender, AVFrame *video)
 
 void render_setrect(void *hrender, int type, int x, int y, int w, int h)
 {
-    if (!hrender) return;
+	if (!hrender) return;
     RENDER *render = (RENDER*)hrender;
     switch (type) {
     case 0:

@@ -19,7 +19,8 @@ namespace SOUI
         {
 			CRealWndDlg *wndDlg = new CRealWndDlg;
 			wndDlg->Create(pRealWnd->GetContainer()->GetHostHwnd(), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 0, 0, 0, 0, 0);
-            //把pbtn的指针放到SRealWnd的Data中保存，以便在窗口destroy时释放pbtn对象。
+
+			//把pbtn的指针放到SRealWnd的Data中保存，以便在窗口destroy时释放pbtn对象。
             pRealWnd->SetData(wndDlg);
             //返回成功创建后的窗口句柄
             return wndDlg->m_hWnd;

@@ -947,10 +947,11 @@ void player_setrect(void *hplayer, int type, int x, int y, int w, int h)
 	if (player->init_params.vdev_render_type == VDEV_RENDER_TYPE_EAPIL)
 	{
 		rw = w; rh = h;
-	}		
-    if (rw <= 0) rw = 1;
-    if (rh <= 0) rh = 1;
-    render_setrect(player->render, type, x + (w - rw) / 2, y + (h - rh) / 2, rw, rh);
+	}
+	if (rw <= 0) rw = 1;
+	if (rh <= 0) rh = 1;
+	render_setrect(player->render, type, x + (w - rw) / 2, y + (h - rh) / 2, rw, rh);
+
 }
 
 void player_seek(void *hplayer, int64_t ms, int type)
@@ -1083,6 +1084,9 @@ void player_getparam(void *hplayer, int id, void *param)
     case PARAM_PLAYER_INIT_PARAMS:
         memcpy(param, &player->init_params, sizeof(PLAYER_INIT_PARAMS));
         break;
+	case PARAM_PLAYER_STATUS:
+		*(int*)param = player->player_status;
+		break;
     default:
         render_getparam(player->render, id, param);
         break;
