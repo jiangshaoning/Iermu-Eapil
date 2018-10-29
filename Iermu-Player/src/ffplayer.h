@@ -103,6 +103,9 @@ enum {
 	//play status
 	PARAM_PLAYER_STATUS,
 
+	//play render type
+	PARAM_PLAYER_RENDER_TYPE,
+
 	//low delay play
 	PARAM_PLAY_LOW_DELAY,
 };

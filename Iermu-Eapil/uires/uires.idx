@@ -41,6 +41,7 @@
     <file name="ID_PLAYMODE_BTN" path="image\btn_playmode.png" />
     <file name="ID_PLAYADD_BTN" path="image\btn_playadd.png" />
     <file name="ID_PLAYDELETE_BTN" path="image\btn_playdelete.png" />
+    <file name="ID_EAPILTYPE_BTN" path="image\btn_eapilType.png" />
   </BTN>
   <ICON>
     <file name="ICON_LOGO"  path="image\Iermu-Eapil.ico"/>

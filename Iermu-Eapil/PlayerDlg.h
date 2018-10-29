@@ -33,6 +33,7 @@ public:
 	void OnVolumeZero();
 	void FullScreen(BOOL bFull);
 	void OnScreenFull();
+	void OnEapilType();
 	void OnPlaySwitchPause();
 	void OnPlayList();
 	void OnBtnOpen();
@@ -63,6 +64,7 @@ public:
 		EVENT_NAME_COMMAND(L"btn_volume", OnVolume)
 		EVENT_NAME_COMMAND(L"btn_volume_zero", OnVolumeZero)
 		EVENT_NAME_COMMAND(L"btn_screen_full", OnScreenFull)
+		EVENT_NAME_COMMAND(L"btn_eapiltype", OnEapilType)
 		EVENT_NAME_COMMAND(L"btn_playlist", OnPlayList)
 		EVENT_ID_COMMAND(200, OnBtnPlay)
 		EVENT_ID_COMMAND(201, OnBtnPause)
@@ -98,6 +100,7 @@ private:
 	SSliderBar*		m_VolumeSlider;
 	SSliderBar*		m_Sliderbarpos;
 	int				m_LButtonDown;
+	int				m_eapilType;		// 全景模式
 	WINDOWPLACEMENT m_OldWndPlacement;  // 保存窗口原来的位置
 	int				m_listWidth;		// 右边list宽度
 	int				m_captionHeight;	// 上面title高度

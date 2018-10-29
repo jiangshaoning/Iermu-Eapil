@@ -64,6 +64,7 @@
         <imgbtn name="btn_volume" data="1" id="206" pos="|-60,16" cursor="hand" size="16,16" tip="静音" animate="1" skin="btn.volume" />
         <imgbtn name="btn_volume_zero" data="1" id="206" pos="|-60,16" cursor="hand" size="16,16" tip="音量" animate="1" skin="btn.volume_zero" show="0"/>
         <sliderbar name="volumeSlider" thumbInRail="0" cursor="hand" width="100" value="50" min="-182" max="73" pos="[0,15" thumbSkin="skin.SliderPlayvol_png" posSkin="skin.SliderForeVolume_png" bkgndSkin="skin.SliderBackVolume_png"  />
+        <imgbtn name="btn_eapiltype" pos="-160,15" size="33,25" cursor="hand" tip="全景模式切换" animate="1" skin="btn.eapiltype_png" />
         <imgbtn name="btn_screen_full" pos="-100,15" size="33,25" cursor="hand" tip="全屏" animate="1" skin="btn.screen_full" />
         <imgbtn name="btn_playlist" pos="-40,15" size="30,25" cursor="hand" tip="播放列表" animate="1" skin="btn.playlist" />
       </caption>

@@ -1087,6 +1087,9 @@ void player_getparam(void *hplayer, int id, void *param)
 	case PARAM_PLAYER_STATUS:
 		*(int*)param = player->player_status;
 		break;
+	case PARAM_PLAYER_RENDER_TYPE:
+		*(int*)param = player->init_params.vdev_render_type;
+		break;
     default:
         render_getparam(player->render, id, param);
         break;

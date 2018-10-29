@@ -168,6 +168,7 @@ PlayerDlg::PlayerDlg() : SHostWnd(_T("LAYOUT:XML_MAINWND"))
 	m_bLayoutInited = FALSE;
 	m_hplayer = NULL;
 	m_voiceType = 0;
+	m_eapilType = 0;
 	m_bIsRecording = FALSE;
 	m_ctrl_down = FALSE;
 	m_LButtonDown = 0;
@@ -577,7 +578,7 @@ void PlayerDlg::OnBtnPlay()
 		m_Sliderbarpos->SetValue(0);
 		Play(path.c_str());
 	}
-
+	OnPlaySwitchPause();
 }
 
 void PlayerDlg::OnBtnPause()
@@ -600,6 +601,18 @@ void PlayerDlg::OnPlayList()
 	SWindow  *wnd = FindChildByID2<SWindow>(8000);
 	wnd->SetVisible(!wnd->IsVisible(), TRUE);
 	m_bOpenPlayList = !m_bOpenPlayList;
+}
+
+void PlayerDlg::OnEapilType()
+{
+	int type = 0;
+	player_getparam(m_hplayer, PARAM_PLAYER_RENDER_TYPE, &type);
+	if (type != VDEV_RENDER_TYPE_EAPIL) return;
+
+	m_eapilType++;
+	if (m_eapilType >= 4) m_eapilType = 0;
+	player_setrendertype(m_hplayer, m_eapilType);
+
 }
 
 //删除列表文件

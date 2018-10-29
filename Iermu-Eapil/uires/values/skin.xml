@@ -27,4 +27,5 @@
   <imglist name="btn.playmode_png" src="BTN:ID_PLAYMODE_BTN" states="4" />
   <imglist name="btn.playadd_png" src="BTN:ID_PLAYADD_BTN" states="4" />
   <imglist name="btn.playdelete_png" src="BTN:ID_PLAYDELETE_BTN" states="4" />
+  <imglist name="btn.eapiltype_png" src="BTN:ID_EAPILTYPE_BTN" states="3" />
 	</skin>
