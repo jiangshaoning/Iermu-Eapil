@@ -14,6 +14,7 @@ public:
 	void*			m_hplayer;
 	BOOL            m_bFullScreenMode;  // 是否在全屏模式
 	BOOL            m_bOpenPlayList;    // 是否打开播放列表
+	BOOL			m_isplaying;        // 是否正在播放
 	void OnClose();
 	void OnMaximize();
 	void OnRestore();
@@ -92,8 +93,8 @@ public:
 		END_MSG_MAP()
 private:
 	BOOL			m_bLayoutInited;
-	char			m_playUrl[60];		//播放路径
-	int				m_voiceType;		//是否有声音
+	char			m_playUrl[60];		// 播放路径
+	int				m_voiceType;		// 是否有声音
 	CSize			m_rtClient;
 	BOOL			m_ctrl_down;
 	BOOL			m_bIsRecording;
@@ -105,6 +106,6 @@ private:
 	int				m_listWidth;		// 右边list宽度
 	int				m_captionHeight;	// 上面title高度
 	int				m_toolsHeight;		// 下面tools高度
-	SListView*		m_Play_List_Wnd;	//播放列表控件
+	SListView*		m_Play_List_Wnd;	// 播放列表控件
 	TCHAR			m_strTxt[MAX_PATH];
 };

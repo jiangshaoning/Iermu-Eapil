@@ -148,11 +148,13 @@ LRESULT CRealWndDlg::playVideo(UINT uMsg, WPARAM wParam, LPARAM lParam)
 	{
 	case MSG_OPEN_DONE:
 		player_play(m_dlgplayer->m_hplayer);
+		m_dlgplayer->m_isplaying = TRUE;
 		m_dlgplayer->OnPlaySwitchPause();
 		m_dlgplayer->OnPlayProgress();
 		break;
 	case MSG_PLAY_COMPLETED:
 		RELEASEPLAYER(m_dlgplayer->m_hplayer);
+		m_dlgplayer->m_isplaying = FALSE;
 		m_dlgplayer->OnPlaySwitchPause();
 		break;
 	}

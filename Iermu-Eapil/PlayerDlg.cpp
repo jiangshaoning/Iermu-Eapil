@@ -174,6 +174,7 @@ PlayerDlg::PlayerDlg() : SHostWnd(_T("LAYOUT:XML_MAINWND"))
 	m_LButtonDown = 0;
 	m_bFullScreenMode = FALSE;
 	m_bOpenPlayList = TRUE;
+	m_isplaying = FALSE;
 	m_captionHeight = 40;
 	m_toolsHeight = 60;
 	m_listWidth = 260;
@@ -555,14 +556,17 @@ void PlayerDlg::OnPlaySwitchPause()
 	SImageButton *pbtnPause = FindChildByID2<SImageButton>(201);
 	if (pbtnPlay && pbtnPause)
 	{
-		pbtnPlay->SetVisible(!pbtnPlay->IsVisible(), TRUE);
-		pbtnPause->SetVisible(!pbtnPause->IsVisible(), TRUE);
+		int status = 0;
+		player_getparam(m_hplayer, PARAM_PLAYER_STATUS, &status);
+
+		pbtnPlay->SetVisible(!m_isplaying, TRUE);
+		pbtnPause->SetVisible(m_isplaying, TRUE);
 	}
 }
 
 void PlayerDlg::OnBtnPlay()
 {
-	int status = 0;;
+	int status = 0;
 	CPlayListWnd *pAdapter = (CPlayListWnd*)m_Play_List_Wnd->GetAdapter();
 	int m_items = m_Play_List_Wnd->GetSel();
 	if (m_items < 0) return;
@@ -572,24 +576,28 @@ void PlayerDlg::OnBtnPlay()
 	if (status >> 2 & 1)
 	{
 		player_play(m_hplayer);
+		m_isplaying = TRUE;
+		OnPlaySwitchPause();
 	}
 	else
 	{
 		m_Sliderbarpos->SetValue(0);
 		Play(path.c_str());
 	}
-	OnPlaySwitchPause();
 }
 
 void PlayerDlg::OnBtnPause()
 {
 	player_pause(m_hplayer);
+	m_isplaying = FALSE;
 	OnPlaySwitchPause();
 }
 
 void PlayerDlg::OnBtnStop()
 {
 	RELEASEPLAYER(m_hplayer);
+	m_isplaying = FALSE;
+	OnPlaySwitchPause();
 }
 
 void PlayerDlg::OnPlayList()

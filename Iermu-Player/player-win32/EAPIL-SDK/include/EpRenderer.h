@@ -17,6 +17,7 @@
 #else
 #   define EPRENDER_LIB
 #endif
+#include <string>
 
 #include "GLRenderHead.h"
 
@@ -25,8 +26,6 @@
 #else
 #include "EpTemplateHead.h"
 #endif
-
-#include <string>
 
 class GLRenderControl;
 
@@ -39,6 +38,12 @@ class  EpRenderer
 #endif
 {
 public:
+
+	/**
+	* @brief 注册SDK
+	* @param key 易瞳颁发的key
+	*/
+	static bool RegisterSDK(char * key);
 	/**
 	* @brief	构造函数
 	*/
@@ -260,7 +265,7 @@ public:
 	* @brief 重新打开视频时重置播放状态（清除视频数据）
 	*/
 	void ResetPlayState();
-	
+
 	/**
 	* @brief 判断当前是否是球模式渲染
 	* @return true：球模式 false：非球模式
@@ -285,7 +290,7 @@ public:
 	* @param scale true：开启缩放, false：关闭缩放
 	* @param beginScale 图像缩放值
 	*/
-    void SetImageScalable(bool scale = false, float beginScale = 1.0);
+	void SetImageScalable(bool scale = false, float beginScale = 1.0);
 
 	/**
 	* @brief 设置图像缩放值（用于宽屏模式）
@@ -297,7 +302,7 @@ public:
 	* @brief 宽屏模式下设置纵向拖动方式
 	* @param state 0 旋转拖动  1 平动 2 不能动
 	*/
-    void SetWideScreenYCanMove(int state);
+	void SetWideScreenYCanMove(int state);
 
 	/**
 	* @brief 清除模板
@@ -367,7 +372,7 @@ public:
 	* @param projectMatrix 投影矩阵
 	*/
 	void GetCurrentMVPMatrix(float * modelViewMatrix, float * projectMatrix);
-	
+
 	/**
 	* @brief 设置标定图标是否显示
 	* @param show true：显示 false：不显示
@@ -395,8 +400,8 @@ public:
 	* @brief 设置是否能截屏
 	* @param canSaveImage true：能截屏 false：不能截屏
 	*/
-    void SetCanSaveImage(bool canSaveImage);
-    
+	void SetCanSaveImage(bool canSaveImage);
+
 	/**
 	* @brief 设置是否显示logo
 	* @param visable true：显示 false：不显示
@@ -409,11 +414,6 @@ public:
 	*/
 	std::string GetSDKVersion();
 
-	/**
-	* @brief 设置过期验证key
-	* @param key key字符串
-	*/
-    void SetExpireKey(char * key);
 
 private:
 	/**

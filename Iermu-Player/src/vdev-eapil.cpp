@@ -89,6 +89,7 @@ static void* EapilRenderThreadProc(void *param)
 		return NULL;
 	}
 	//c->_renderControl->SetExpireKey("E8414C234E5C32A99D992398089A53BA93CA02EFAE937EB1B40290E85058381E4F417FCF77196C73F0D14178888604246F4526B6B29D32BCC366A5781B1D6713");
+	EpRenderer::RegisterSDK("e8/owi8BnQ7Pm0XgRDP6H4L8L1q/z2MGsP4AehLiKC+UjqwccLLNVE6xcEO0curgdAA4H2atQ4QQ6JJbudLdjQ==");
 	c->_renderControl->InitOpenGL();
 	while (c->_renderThreadRun)
 	{
