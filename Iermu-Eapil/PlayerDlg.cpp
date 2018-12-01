@@ -178,6 +178,7 @@ PlayerDlg::PlayerDlg() : SHostWnd(_T("LAYOUT:XML_MAINWND"))
 	m_captionHeight = 40;
 	m_toolsHeight = 60;
 	m_listWidth = 260;
+	m_speed = 100;
 	memset(m_playUrl, 0, sizeof(m_playUrl));
 }
 
@@ -345,6 +346,7 @@ LRESULT PlayerDlg::OnMsg_ADD_FILED(UINT uMsg, WPARAM wp, LPARAM lp, BOOL & bHand
 		}
 	}
 	pAdapter->notifyDataSetChanged();
+	pAdapter->OnPlayLastFile();
 	return 0;
 }
 
@@ -367,6 +369,18 @@ void PlayerDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 		break;
 	case VK_CONTROL:
 		m_ctrl_down = TRUE;
+		break;
+	case VK_RIGHT:
+		PlayerJumpNextTime(15000);
+		break;
+	case VK_LEFT:
+		PlayerJumpNextTime(-5000);
+		break;
+	case VK_UP:
+		PlayerSetSpeed(25);
+		break;
+	case VK_DOWN:
+		PlayerSetSpeed(-25);
 		break;
 	case 'R'://Ctrl + R
 		if (m_ctrl_down)
@@ -408,6 +422,32 @@ void PlayerDlg::OnTimer(UINT_PTR nIDEvent)
 		m_strTxt[0] = '\0';
 		break;
 	}
+}
+
+void PlayerDlg::PlayerJumpNextTime(int time)
+{
+	int64_t pos = 0;
+	int64_t total = 1;
+	int value = 0;
+
+	player_getparam(m_hplayer, PARAM_MEDIA_DURATION, &total);
+	player_getparam(m_hplayer, PARAM_MEDIA_POSITION, &pos);
+
+	pos += time;
+	if (pos < 0) pos = 0;
+	if (pos >total) pos = total;
+
+	player_seek(m_hplayer, pos, 0);
+	value = (int)(1000 * pos / total);
+	m_Sliderbarpos->SetValue(value);
+}
+
+void PlayerDlg::PlayerSetSpeed(int speed)
+{
+	m_speed += speed;
+	if (m_speed > 200) m_speed = 200;
+	if (m_speed < 25) m_speed = 25;
+	player_setparam(m_hplayer, PARAM_PLAY_SPEED_VALUE, &m_speed);
 }
 
 void PlayerDlg::PlayerShowText(int time)

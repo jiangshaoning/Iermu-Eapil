@@ -144,13 +144,16 @@ LRESULT CRealWndDlg::closeVideo(UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 LRESULT CRealWndDlg::playVideo(UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	int type = 1;
 	switch (wParam)
 	{
 	case MSG_OPEN_DONE:
+
 		player_play(m_dlgplayer->m_hplayer);
-		m_dlgplayer->m_isplaying = TRUE;
+		m_dlgplayer->m_isplaying = TRUE;		
 		m_dlgplayer->OnPlaySwitchPause();
 		m_dlgplayer->OnPlayProgress();
+		player_setparam(m_dlgplayer, PARAM_PLAY_SPEED_TYPE, &type);
 		break;
 	case MSG_PLAY_COMPLETED:
 		RELEASEPLAYER(m_dlgplayer->m_hplayer);

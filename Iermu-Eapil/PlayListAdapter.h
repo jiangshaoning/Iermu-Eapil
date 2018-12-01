@@ -33,9 +33,16 @@ public:
 		SWindow *btn = sobj_cast<SWindow>(pEvt->sender);
 		string  _pathname = S_CT2A(m_db[btn->GetUserData()].m_FULL_Path);
 		m_Play_index=btn->GetUserData();
-		::SendMessageW(_m_hwnd, MS_PLAYING_PATHNAME, 0, (LPARAM)_pathname.c_str());	
+		::SendMessageW(_m_hwnd, MS_PLAYING_PATHNAME, 0, (LPARAM)_pathname.c_str());
 		return true;
 	}
+
+	void OnPlayLastFile()
+	{
+		string  _pathname = S_CT2A(m_db[getCount()-1].m_FULL_Path);
+		::SendMessageW(_m_hwnd, MS_PLAYING_PATHNAME, 0, (LPARAM)_pathname.c_str());
+	}
+
 	void ADD_files(SStringT  m_path)
 	{
 		PlaylistInfo info;

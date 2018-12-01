@@ -47,10 +47,12 @@ public:
 	BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint point);
 	void OnPlayProgress();
 	void Play(const char *url);
-	LRESULT OnMsg_PLAY_FILE(UINT uMsg, WPARAM wp, LPARAM lp, BOOL & bHandled);//播放文件
-	LRESULT OnMsg_ADD_FILED(UINT uMsg, WPARAM wp, LPARAM lp, BOOL & bHandled);//增加文件完成后的通知
+	LRESULT OnMsg_PLAY_FILE(UINT uMsg, WPARAM wp, LPARAM lp, BOOL & bHandled);	//播放文件
+	LRESULT OnMsg_ADD_FILED(UINT uMsg, WPARAM wp, LPARAM lp, BOOL & bHandled);	//增加文件完成后的通知
 	void OnDellfiles_MenuBtn();													//打开删除菜单
 	void OnAddfiles_MenuBtn();													//打开增加菜单
+	void PlayerJumpNextTime(int time);
+	void PlayerSetSpeed(int speed);
 	int irmFlvReadFileTemplate(char *FlvFile, unsigned char *FileLink);
 ;protected:
 	//soui消息
@@ -101,6 +103,7 @@ private:
 	SSliderBar*		m_VolumeSlider;
 	SSliderBar*		m_Sliderbarpos;
 	int				m_LButtonDown;
+	int				m_speed;			// 播放速度
 	int				m_eapilType;		// 全景模式
 	WINDOWPLACEMENT m_OldWndPlacement;  // 保存窗口原来的位置
 	int				m_listWidth;		// 右边list宽度
