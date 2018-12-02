@@ -48,6 +48,28 @@ void CRealWndDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	case VK_CONTROL:
 		m_ctrl_down = TRUE;
 		break;
+	case VK_RIGHT:
+		m_dlgplayer->PlayerJumpNextTime(15000);
+		break;
+	case VK_LEFT:
+		m_dlgplayer->PlayerJumpNextTime(-5000);
+		break;
+	case VK_UP:
+		m_dlgplayer->PlayerSetSpeed(25);
+		break;
+	case VK_DOWN:
+		m_dlgplayer->PlayerSetSpeed(-25);
+		break;
+	case VK_SPACE:
+		if (m_dlgplayer->m_isplaying)
+			m_dlgplayer->OnBtnPause();
+		else
+		{
+			player_play(m_dlgplayer->m_hplayer);
+			m_dlgplayer->m_isplaying = TRUE;
+			m_dlgplayer->OnPlaySwitchPause();
+		}
+		break;
 	case 'R'://Ctrl + R
 		if (m_ctrl_down)
 		{

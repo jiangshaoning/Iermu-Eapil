@@ -382,6 +382,16 @@ void PlayerDlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	case VK_DOWN:
 		PlayerSetSpeed(-25);
 		break;
+	case VK_SPACE:
+		if (m_isplaying)
+			OnBtnPause();
+		else
+		{
+			player_play(m_hplayer);
+			m_isplaying = TRUE;
+			OnPlaySwitchPause();
+		}
+		break;
 	case 'R'://Ctrl + R
 		if (m_ctrl_down)
 		{
