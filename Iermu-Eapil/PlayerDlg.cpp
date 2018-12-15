@@ -10,6 +10,7 @@
 
 #define TIMER_ID_HIDE_TEXT			3
 #define TIMER_ID_PLAYING_PROGRESS	1
+#define TIMER_ID_DISABLE_SLEEP		2
 
 const TCHAR STR_MOVE_FILE_FILTER[] =
 _T("媒体文件(所有类型)\0*.asf;*.avi;*.wm;*.wmp;*.wmv;*.ram; *.rm; *.rmvb; *.rp; *.rpm; *.rt; *.smi; *.smil;*.dat; *.m1v; *.m2p; *.m2t; *.m2ts; *.m2v; *.mp2v; *.mpeg; *.mpe; *.mpg; *.mpv2; *.pss; *.pva; *.tp; *.tpr; *.ts;*.m4b; *.m4p; *.m4v; *.mp4; *.mpeg4; *.mov; *.qt; *.f4v; *.flv; *.hlv; *.swf; *.ifo; *.vob;*.3g2; *.3gp; *.3gp2; *.3gpp; *.amv; *.bik; *.csf; *.divx; *.evo; *.ivm; *.mkv; *.mod; *.mts; *.ogm; *.pmp; *.scm; *.tod; *.vp6; *.webm; *.xlmv;*.aac; *.ac3; *.amr; *.ape; *.cda; *.dts; *.flac; *.mla; *.m2a; *.m4a; *.mid; *.midi; *.mka; *.mp2; *.mp3; *.mpa; *.ogg; *.ra; *.tak; *.tta; *.wav; *.wma; *.wv;\0")
@@ -431,6 +432,10 @@ void PlayerDlg::OnTimer(UINT_PTR nIDEvent)
 		player_textout(m_hplayer, 0, 0, 0, NULL);
 		m_strTxt[0] = '\0';
 		break;
+	case TIMER_ID_DISABLE_SLEEP:
+		if (m_bFullScreenMode && m_isplaying)
+			mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+		break;
 	}
 }
 
@@ -545,6 +550,7 @@ void PlayerDlg::FullScreen(BOOL bFull)
 
 	if (bFull)
 	{
+		SetTimer(TIMER_ID_DISABLE_SLEEP, 60000);
 
 		::GetWindowPlacement(m_hWnd, &m_OldWndPlacement);
 
@@ -564,6 +570,7 @@ void PlayerDlg::FullScreen(BOOL bFull)
 	}
 	else
 	{
+		KillTimer(TIMER_ID_DISABLE_SLEEP);
 		m_captionHeight = 40;
 		m_toolsHeight = 60;
 		::SetWindowPlacement(m_hWnd, &m_OldWndPlacement);
@@ -580,7 +587,9 @@ void PlayerDlg::FullScreen(BOOL bFull)
 void PlayerDlg::OnScreenFull()
 {
 	if (!m_bFullScreenMode)
+	{
 		FullScreen(true);
+	}
 }
 
 void PlayerDlg::OnBtnOpen()	//打开文件
